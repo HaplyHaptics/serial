@@ -256,6 +256,9 @@ Serial::SerialImpl::reconfigurePort ()
     dcbSerialParams.fInX = false;
   }
 
+  // https://github.com/wjwwood/serial/pull/164/files
+  dcbSerialParams.fRtsControl = RTS_CONTROL_ENABLE;
+
   // activate settings
   if (!SetCommState(fd_, &dcbSerialParams)){
     CloseHandle(fd_);
